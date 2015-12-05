@@ -9,9 +9,9 @@ class TagsController < ApplicationController
   end
 
   def show
-    @tag = Tag.find_by name:'(params[:id])'
-    Rails.logger.info name: params[:id]
-      render json: @tag, serializer: TagIDSerializer
+    @tag = Tag.find_by name:(params[:id])
+    Rails.logger.info @tag.inspect
+      render json: @tag, serializer: FulltagSerializer, root: :tag
   end
 
   private
