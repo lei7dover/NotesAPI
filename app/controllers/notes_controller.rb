@@ -1,10 +1,12 @@
 class NotesController < ApplicationController
   def create
-    @notes = Note.new(notes_params)
-    if @notes.save
-      render json: @notes
+    @note = Note.new(notes_params)
+    if @note.save
+      Rails.logger.info params[:notes][:tags]
+      @note.tag_names=(params[:notes][:tags])
+      render json: @note
     else
-      render json: @notes.errors
+      render json: @note.errors, :status => :bad_request
     end
   end
 
