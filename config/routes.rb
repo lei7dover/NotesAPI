@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
   scope "/api" do
+    get '/notes/tag/:id' => 'tags#show'
     resources :notes, except: [:new, :edit]
-    resources :tags, except: [:new, :edit]
-    get '/notes/tag' => 'tags#index'
 
   end
   # The priority is based upon order of creation: first created -> highest priority.
