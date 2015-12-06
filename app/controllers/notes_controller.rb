@@ -11,8 +11,12 @@ class NotesController < ApplicationController
   end
 
   def index
-    @notes = Note.all
+    if params[:api_token]
+      @notes=Note.find_by api_token:params[:api_token]
+    else
+      @notes = Note.all
       render json: @notes
+    end
   end
 
   private
